@@ -1,6 +1,12 @@
 /*******************************/
 /********* General CSS *********/
 /*******************************/
+:root {
+    --primary-color: #7cf03d;
+    --background-color: #1f2f4d;
+    --text-color: #ffffff;
+}
+
 body {
     color: #797979;
    
@@ -299,9 +305,10 @@ a:focus {
     position: relative;
     width: 100%;
     height: 100vh;
-    padding: 120px 0 0 0; /* Remove padding-bottom */
-    margin: 0; /* Remove margin-bottom */
+    padding: 120px 0 0 0;
+    margin: 0;
     overflow: hidden;
+    background-color: var(--background-color);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -309,10 +316,14 @@ a:focus {
     opacity: 0;
     animation: show-content .5s linear forwards;
     animation-delay: 1.6s;
-   
 }
 
-
+@keyframes show-content {
+    to {
+        visibility: visible;
+        opacity: 1;
+    }
+}
 
 .hero .container-fluid {
     padding-top: 6rem;
@@ -320,7 +331,6 @@ a:focus {
     margin: 0;
     height: auto;
     overflow: hidden;
-    
 }
 
 .hero .hero-image {
@@ -336,84 +346,60 @@ a:focus {
     max-height: 100%;
     border-radius: 50%;
 }
-.hero-image .img-box{
+
+.hero-image .img-box {
     width: 32vw;
     position: relative;
     height: 32vw;
-    
     border-radius: 50%;
     padding: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    gap:15px;
+    gap: 15px;
 }
-.hero-image .img-box::before,.hero-image .img-box::after{
+
+.hero-image .img-box::before,
+.hero-image .img-box::after {
     position: absolute;
     content: "";
     width: 500px;
     height: 500px;
-   
-    background: conic-gradient(transparent,transparent,transparent,#7cf03d);
+    background: conic-gradient(transparent, transparent, transparent, var(--primary-color));
     transform: rotate(0deg);
     animation: rotate-border 10s linear infinite;
 }
-.hero-image .img-box::after{
+
+.hero-image .img-box::after {
     animation-delay: -5s;
 }
 
-@keyframes rotate-border{
-    100%{
+@keyframes rotate-border {
+    100% {
         transform: rotate(360deg);
     }
 }
 
-.bar-animation{
-    position: absolute;
+.hero-image .img-box .img-item {
     width: 100%;
     height: 100%;
-    display: flex;
-    z-index: -1;
-    
-}
-.bar-animation .bar{
-  background: #1f2f4d;
-    width: 100%;
-    height: 100%;
-   border: #1f2f4d solid 1px;
-    transform: translateY(-100%);
-    animation: showbar .5s ease-in forwards;
-    animation-delay: calc(.1s * var(--i));
-}
-
-@keyframes showbar{
-    100%{
-        transform: translateY(0%);
-       
-    }
-}
-
-.hero-image .img-box .img-item{
-    width: 100%;
-    height: 100%;
-   position: relative;
-   z-index: 1;
+    position: relative;
+    z-index: 1;
     background: #ffffff;
     border-radius: 50%;
     display: flex;
     justify-content: center;
-   overflow: hidden;
-   border: .5px solid #1f2f4d;
-    
+    overflow: hidden;
+    border: .5px solid var(--background-color);
 }
-.hero-image .img-box .img-item img{
-   position: absolute;
-   display: block;
-   object-fit: contain;
-   width: 90%;
-   top: 30px;
- 
+
+.hero-image .img-box .img-item img {
+    position: absolute;
+    display: block;
+    object-fit: contain;
+    width: 90%;
+    top: 30px;
 }
 
 .hero .hero-content {
@@ -426,64 +412,72 @@ a:focus {
 }
 
 .hero .hero-text p {
-    color: #ffffff;
+    color: var(--text-color);
     font-size: 25px;
     font-weight: 600;
     margin-bottom: 15px;
 }
 
 .hero .hero-text h1 {
-    color: #ffffff;
+    color: var(--text-color);
     font-size: 60px;
     font-weight: 700;
     letter-spacing: 3px;
     margin-bottom: 15px;
+    line-height: 1.2;
 }
 
-.hero .hero-text h2 {
-    display: inline-block;
-    margin: 0;
-    height: 35px;
-    color: #7cf03d;
+.hero .hero-text .name-highlight {
+    color: var(--primary-color);
+}
+
+.hero .hero-text .hero-subtitle {
+    color: var(--primary-color);
     font-size: 35px;
     font-weight: 600;
+    margin-bottom: 20px;
 }
 
-.hero .hero-text .typed-text {
-    display: none;
-    
-    
-}
-
-.hero .hero-text .typed-cursor {
-    font-size: 35px;
-    font-weight: 300;
-    color: #11a531;
+.hero .hero-text .hero-description {
+    color: var(--text-color);
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 500px;
+    margin-bottom: 30px;
 }
 
 .hero .hero-btn .btn {
     margin-top: 35px;
-     color: #ffffff;
+    color: var(--text-color);
     background: transparent;
-    box-shadow: inset 0 0 0 0 #ffffff;
-    border-color: #ffffff;
+    box-shadow: inset 0 0 0 0 var(--text-color);
+    border-color: var(--text-color);
     border-radius: 10px;
     transition: .5s;
+    padding: 12px 30px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
 }
 
+.hero .hero-btn .download {
+    color: var(--text-color);
+    background: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+    border-radius: 10px;
+    border: 2px solid var(--primary-color);
+}
 
 .hero .hero-btn .btn:hover {
-    color:  #ffffff;
-    background: #7cf03d;
-    box-shadow:  0 0  10px #7cf03d;
+    color: var(--text-color);
+    background: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
     border-radius: 10px;
-    border: 2px solid #7cf03d;
-
-    
+    border: 2px solid var(--primary-color);
 }
 
 .hero .hero-btn .btn:first-child {
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 @media (max-width: 991.98px) {
@@ -493,33 +487,52 @@ a:focus {
         overflow: hidden;
         margin: 0;
     }
+
     .hero .container-fluid {
         margin: 0 !important;
         padding-top: 3rem;
         padding-bottom: 3rem;
     }
-    
+
     .hero .hero-content {
         padding: 0 15px;
+        text-align: center;
+        align-items: center;
     }
-    
+
     .hero .hero-text p {
         font-size: 20px;
-        color: #ffffff;
+        color: var(--text-color);
     }
-    
+
     .hero .hero-text h1 {
         font-size: 45px;
     }
-    
-    .hero .hero-text h2 {
+
+    .hero .hero-text .hero-subtitle {
         font-size: 25px;
-        height: 25px;
     }
-    
+
+    .hero .hero-text .hero-description {
+        font-size: 16px;
+    }
+
     .hero .hero-btn .btn {
         padding: 12px 30px;
         letter-spacing: 1px;
+    }
+
+    .hero .hero-image {
+        text-align: center;
+        padding-right: 0;
+        margin-left: 0;
+        margin-top: 30px;
+    }
+
+    .hero-image .img-box {
+        width: 60vw;
+        height: 60vw;
+        margin: 0 auto;
     }
 }
 
@@ -530,61 +543,92 @@ a:focus {
         height: auto;
         overflow: hidden;
     }
-   .hero .container-fluid {
+
+    .hero .container-fluid {
         margin: 0 !important;
     }
-    
+
     .hero,
     .hero .hero-text,
     .hero .hero-btn {
         width: 100%;
         text-align: center;
     }
-    
+
     .hero .hero-text p {
         font-size: 18px;
     }
-    
+
     .hero .hero-text h1 {
         font-size: 35px;
     }
-    
-    .hero .hero-text h2 {
+
+    .hero .hero-text .hero-subtitle {
         font-size: 22px;
-        height: 22px;
     }
-    
+
+    .hero .hero-text .hero-description {
+        font-size: 15px;
+    }
+
     .hero .hero-btn .btn {
         padding: 10px 15px;
         letter-spacing: 1px;
     }
+
+    .hero-image .img-box {
+        width: 70vw;
+        height: 70vw;
+    }
 }
 
 @media (max-width: 575.98px) {
-    .hero{
+    .hero {
         height: auto;
         overflow: hidden;
         margin: 0;
     }
+
     .hero .container-fluid {
         margin: 0 !important;
     }
+
     .hero .hero-text p {
         font-size: 16px;
     }
-    
+
     .hero .hero-text h1 {
         font-size: 30px;
     }
-    
-    .hero .hero-text h2 {
+
+    .hero .hero-text .hero-subtitle {
         font-size: 18px;
-        height: 18px;
     }
-    
+
+    .hero .hero-text .hero-description {
+        font-size: 14px;
+    }
+
+    .hero .hero-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .hero .hero-btn .btn {
         padding: 8px 10px;
         letter-spacing: 0;
+        width: 200px;
+        margin: 5px 0;
+    }
+
+    .hero .hero-btn .btn:first-child {
+        margin-right: 0;
+    }
+
+    .hero-image .img-box {
+        width: 80vw;
+        height: 80vw;
     }
 }
 
@@ -891,27 +935,26 @@ a:focus {
     width: 100%;
     height: auto;
     padding: 45px 0 15px 0;
-    background-color: #1f2f4d;
+    background-color: var(--background-color);
 }
 
-.service .container .row{
+.service .container .row {
     display: flex;
-    width:90%;
+    width: 90%;
     height: auto;
     flex-direction: row;
 }
+
 .service .service-item {
     position: relative;
-    
     margin-bottom: 30px;
     display: flex;
-    flex-direction:column; 
+    flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     box-shadow: inset 0 0 0 0 transparent;
     transition: ease-out 0.5s;
 }
-
 
 .service .service-icon:hover {
     box-shadow: 0 0 20px rgba(124, 240, 61, 0.7);
@@ -924,7 +967,7 @@ a:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #7cf03d;
+    border: 1px solid var(--primary-color);
     background: #ffffff;
     border-radius: 50%;
 }
@@ -932,8 +975,7 @@ a:focus {
 .service .service-icon i {
     position: relative;
     font-size: 60px;
-    color: #7cf03d;
-    
+    color: var(--primary-color);
     transition: .3s;
 }
 
@@ -944,8 +986,8 @@ a:focus {
 .service .service-icon img:hover {
     transform: scale(1.2);
     transition: all 0.3s ease;
-
 }
+
 .service .service-text {
     position: relative;
     width: calc(100% - 120px);
@@ -953,75 +995,116 @@ a:focus {
     text-align: center;
 }
 
-.service .service-text .range{
+.service .service-text .range {
     width: 100%;
     height: 4px;
     background-color: #414141;
     margin: 15px auto;
 }
-.service .text-center p{
-    color: #ffffff !important;
-}
 
+.service .text-center p {
+    color: var(--text-color) !important;
+}
 
 .service .service-text h3 {
     margin-bottom: 10px;
     font-size: 20px;
     font-weight: 600;
     transition: 1s;
-    color: #ffffff !important;
+    color: var(--text-color) !important;
+    text-transform: capitalize;
 }
-
 
 .service .service-text p {
     margin: 0;
     font-size: 16px;
     transition: 1s;
-     color: #ffffff !important;
+    color: var(--text-color) !important;
 }
-
 
 .service .service-item:hover .service-text h3,
 .service .service-item:hover .service-text p {
-    color: #7cf03d !important;
+    color: var(--primary-color) !important;
+}
+
+.category-title {
+    color: var(--primary-color);
+    margin: 40px 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.range-container {
+    display: flex;
+    gap: 10px;
+    position: relative;
+}
+
+.range {
+    position: relative;
+    width: 100%;
+    border: 2px solid var(--primary-color);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.range-fill {
+    height: 10px;
+    background-color: var(--primary-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 0 5px 5px 0;
+}
+
+.skill-percentage {
+    position: absolute;
+    top: 8px;
+    right: -50px;
+    font-size: large;
+    font-weight: bolder;
+    color: var(--primary-color);
 }
 
 @media (max-width: 575.98px) {
-
-    
     .service .service-text h3 {
         font-size: 16px;
         margin-bottom: 5px;
         text-align: center;
     }
-    
+
     .service .service-text p {
         font-size: 14px;
         text-align: center;
     }
-
 
     .service .service-icon {
         text-align: center;
         width: 100px;
         min-height: 100px;
     }
-    .service .service-item{
 
+    .service .service-item {
         margin-left: 20px;
         text-align: center;
         width: 100%;
     }
-    .service-text .range{
+
+    .service-text .range {
         margin: 10px auto;
     }
+
     .service .service-icon i {
         font-size: 35px;
     }
 
-
+    .skill-percentage {
+        right: -40px;
+        font-size: medium;
+    }
 }
-
 
 /*******************************/
 /******** Portfolio CSS ********/
